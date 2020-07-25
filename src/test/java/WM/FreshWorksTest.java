@@ -58,7 +58,7 @@ public class FreshWorksTest {
 	@Test(priority = 1)
 	public void freshWorkslogoTest() {
 		boolean flag = false;
-			flag = driver.findElement(By.cssSelector("a.logo.logo-fworks")).isDisplayed();
+			flag = driver.findElement(By.cssSelector("a.logo.logo-fworks111")).isDisplayed();
 			Assert.assertTrue(flag);
 	}
 
