@@ -64,6 +64,7 @@ public class FreshWorksTest {
 
 	@Test(priority = 2)
 	public void freshWorksTitleTest() {
+		System.out.println("running title test...");
 		System.out.println(driver.getTitle());
 		assertEquals(driver.getTitle(), "A fresh approach to customer engagement");
 	}
