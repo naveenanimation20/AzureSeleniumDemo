@@ -16,10 +16,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
-import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -73,8 +73,7 @@ public class FreshWorksTest {
 			File destFile = new File("./screenshots/logo/"+System.currentTimeMillis()+".png");
 			try {
 				FileUtils.copyFile(srcFile, destFile);
-		        ITestResult result = Reporter.getCurrentTestResult();
-		        result.setAttribute("attachments", destFile);
+                Reporter.log("<a href='"+ destFile.getAbsolutePath() + "'> <img src='"+ destFile.getAbsolutePath() + "' height='100' width='100'/> </a>");
 
 			} catch (IOException e1) {
 				e1.printStackTrace();
