@@ -16,6 +16,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -71,6 +73,9 @@ public class FreshWorksTest {
 			File destFile = new File("./screenshots/logo/"+System.currentTimeMillis()+".png");
 			try {
 				FileUtils.copyFile(srcFile, destFile);
+		        ITestResult result = Reporter.getCurrentTestResult();
+		        result.setAttribute("attachments", destFile);
+
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
