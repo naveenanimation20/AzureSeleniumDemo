@@ -2,24 +2,17 @@ package WM;
 
 import static org.testng.Assert.assertEquals;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -65,22 +58,8 @@ public class FreshWorksTest {
 	@Test(priority = 1)
 	public void freshWorkslogoTest() {
 		boolean flag = false;
-		try {
-			flag = driver.findElement(By.cssSelector("a.logo.logo-fworks11")).isDisplayed();
-		} catch (Exception e) {
-			String src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE).toString();
-			File srcFile = new File(src);
-			File destFile = new File("./screenshots/logo/"+System.currentTimeMillis()+".png");
-			try {
-				FileUtils.copyFile(srcFile, destFile);
-                Reporter.log("<a href='"+ destFile.getAbsolutePath() + "'> <img src='"+ destFile.getAbsolutePath() + "' height='100' width='100'/> </a>");
-
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			Assert.assertEquals(flag, true);
-
-		}
+			flag = driver.findElement(By.cssSelector("a.logo.logo-fworks")).isDisplayed();
+			Assert.assertTrue(flag);
 	}
 
 	@Test(priority = 2)
