@@ -5,18 +5,15 @@
 
 resources:
   repositories:
-  - repository: MyGitHubRepo # The name used to reference this repository in the checkout step
+  - repository: AzureSeleniumDemo # The name used to reference this repository in the checkout step
     type: github
-    endpoint: MyGitHubServiceConnection
-    name: MyGitHubOrgOrUser/MyGitHubRepo
-  - repository: MyBitbucketRepo
-    type: bitbucket
-    endpoint: MyBitbucketServiceConnection
-    name: MyBitbucketOrgOrUser/MyBitbucketRepo
-  - repository: MyAzureReposGitRepository # In a different organization
-    endpoint: MyAzureReposGitServiceConnection
-    type: git
-    name: OtherProject/MyAzureReposGitRepo
+    endpoint: ritika123
+    name: ritika123-hexa/AzureSeleniumDemo
+  - repository: PowerAppsTestAutomation
+    type: github
+    endpoint: ritika123
+    name: ritika123-hexa/PowerAppsTestAutomation
+
 
 trigger:
 - main
@@ -26,8 +23,8 @@ pool:
 
 steps:
 - checkout: self
-- checkout: MyGitHubRepo
-- checkout: MyBitbucketRepo
-- checkout: MyAzureReposGitRepository
+- checkout: AzureSeleniumDemo
+- checkout: PowerAppsTestAutomation
+- 
 
 - script: dir $(Build.SourcesDirectory)
