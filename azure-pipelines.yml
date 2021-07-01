@@ -1,0 +1,33 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+resources:
+  repositories:
+  - repository: MyGitHubRepo # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: MyGitHubServiceConnection
+    name: MyGitHubOrgOrUser/MyGitHubRepo
+  - repository: MyBitbucketRepo
+    type: bitbucket
+    endpoint: MyBitbucketServiceConnection
+    name: MyBitbucketOrgOrUser/MyBitbucketRepo
+  - repository: MyAzureReposGitRepository # In a different organization
+    endpoint: MyAzureReposGitServiceConnection
+    type: git
+    name: OtherProject/MyAzureReposGitRepo
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self
+- checkout: MyGitHubRepo
+- checkout: MyBitbucketRepo
+- checkout: MyAzureReposGitRepository
+
+- script: dir $(Build.SourcesDirectory)
