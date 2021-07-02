@@ -25,6 +25,6 @@ steps:
 - checkout: self
 - checkout: AzureSeleniumDemo
 - checkout: PowerAppsTestAutomation
-- 
+
 
 - script: dir $(Build.SourcesDirectory)
