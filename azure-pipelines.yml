@@ -31,3 +31,15 @@ steps:
     SourceFolder: '$(Build.SourcesDirectory)/PowerAppsTestAutomation/Microsoft.PowerApps.TestAutomation.Tests/TestAutomation'
     Contents: '**'
     TargetFolder: '$(Build.SourcesDirectory)/AzureSeleniumDemo/src/main/resources'
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'clean install'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    allowBrokenSymlinks: false
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
