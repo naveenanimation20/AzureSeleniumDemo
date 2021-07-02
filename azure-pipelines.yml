@@ -28,6 +28,6 @@ steps:
 - script: dir $(Build.SourcesDirectory)
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)\PowerAppsTestAutomation'
+    SourceFolder: '$(Build.SourcesDirectory)/PowerAppsTestAutomation/Microsoft.PowerApps.TestAutomation.Tests/TestAutomation'
     Contents: '**'
-    TargetFolder: '$(Build.SourcesDirectory)\AzureSeleniumDemo'
+    TargetFolder: '$(Build.SourcesDirectory)/AzureSeleniumDemo/src/main/resources'
