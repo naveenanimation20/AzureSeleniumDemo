@@ -1,0 +1,45 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+resources:
+  repositories:
+  - repository: AzureSeleniumDemo # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: ritika123-hexa
+    name: ritika123-hexa/AzureSeleniumDemo
+  - repository: PowerAppsTestAutomation
+    type: github
+    endpoint: ritika123-hexa
+    name: ritika123-hexa/PowerAppsTestAutomation
+
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self
+- checkout: AzureSeleniumDemo
+- checkout: PowerAppsTestAutomation
+- script: dir $(Build.SourcesDirectory)
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/PowerAppsTestAutomation/Microsoft.PowerApps.TestAutomation.Tests/TestAutomation'
+    Contents: '**'
+    TargetFolder: '$(Build.SourcesDirectory)/AzureSeleniumDemo/src/main/resources'
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'AzureSeleniumDemo/pom.xml'
+    goals: 'clean install'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    allowBrokenSymlinks: false
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
