@@ -7,11 +7,11 @@ resources:
   repositories:
   - repository: AzureSeleniumDemo # The name used to reference this repository in the checkout step
     type: github
-    endpoint: ritika123
+    endpoint: ritika123-hexa
     name: ritika123-hexa/AzureSeleniumDemo
   - repository: PowerAppsTestAutomation
     type: github
-    endpoint: ritika123
+    endpoint: ritika123-hexa
     name: ritika123-hexa/PowerAppsTestAutomation
 
 
