@@ -25,6 +25,9 @@ steps:
 - checkout: self
 - checkout: AzureSeleniumDemo
 - checkout: PowerAppsTestAutomation
-
-
 - script: dir $(Build.SourcesDirectory)
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)\PowerAppsTestAutomation'
+    Contents: '**'
+    TargetFolder: '$(Build.SourcesDirectory)\AzureSeleniumDemo'
